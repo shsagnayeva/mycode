@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""Alta3 Research | RZFeeser
-   List - simple list"""
 
+# extend and append methods
 def main():
     # create a list called list1
     list1 = ["cisco_nxos", "arista_eos", "cisco_ios"]
@@ -9,7 +8,7 @@ def main():
     # display list1
     print(list1)
 
-    #display list[1] which should only display arista_eos
+    # display list[1] which should only display arista_eos
     print(list1[1])
 
     # create a new list containing a single item

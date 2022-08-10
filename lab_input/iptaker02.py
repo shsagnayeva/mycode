@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-"""Alta3 Research | RZFeeser
-   print() - concatenate vs print a series of items"""
-
+# print string
 def main():
 
     # collect string input from the user
