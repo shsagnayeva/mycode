@@ -4,7 +4,7 @@ def main():
 
     result = "Hurricane category is "
 
-    speed = int(input("Please enter wind speed (mph)")
+    speed = input("Please enter wind speed (mph)"
     
     value_type == type(speed)
     
