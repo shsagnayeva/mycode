@@ -6,7 +6,7 @@ def main():
 
     speed = int(input("Please enter wind speed (mph)")
     
-    value_type = type(speed)
+    value_type == type(speed)
     
     if value_type = "int":    
     
