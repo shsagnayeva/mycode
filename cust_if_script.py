@@ -1,16 +1,24 @@
 #!/usr/bin/env python3
 
-def main():
+# Program that returns (prints) severity of a hurricane based upon wind speeds (SSHWS)
 
+def main():
+    
     result = "Hurricane category is "
     
+    # while loop to check if input value is a number
     while True:
 
+        # get input value
         speed = input("Please enter wind speed (mph): ")
         
+        # check if input value is a number
         try:
 
+            # convert number into float
             speed = float(speed) 
+
+            # if, elif, else statements
             if speed >= 157:
                 result = result + "five"
             elif speed >= 130 and speed <= 156:
@@ -26,12 +34,16 @@ def main():
             else:
                 result = "Negative number provided. Please run program again and enter positive number"
             
+            # print result
             print(result)
+
             print("Exiting program\n") 
             break
-
+        
+        # print if error 
         except ValueError:
             
             print("Please enter number")
 
+# run the program
 main()
