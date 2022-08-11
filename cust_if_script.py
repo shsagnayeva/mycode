@@ -10,9 +10,8 @@ def main():
         
         try:
 
-            speed = float(speed)
-            
-            if speed >= 157:     
+            speed = float(speed) 
+            if speed >= 157:
                 result = result + "five"
             elif speed >= 130 and speed <= 156:
                 result = result + "four"
@@ -25,8 +24,10 @@ def main():
             elif speed >= 0 and speed < 74:
                 result = "Not a hurricane"
             else:
-                result = "Please provide positive number"
+                result = "Negative number provided. Please run program again and enter positive number"
+            
             print(result)
+            print("Exiting program\n") 
             break
 
         except ValueError:
