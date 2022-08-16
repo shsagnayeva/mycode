@@ -8,7 +8,6 @@ import re
 import random
 from time import sleep
 # TODO Add comments
-# TODO Remove temp functions calls
 
 
 def get_input():
@@ -32,12 +31,11 @@ def count_word_to_replace(word_to_replace):
         for line in file:
             for word in line.split():
                 word = word.lower()
-                if word == word_to_replace:
+                if word == word_to_replace.lower():
                     count +=1
         return count
 
 
-# TODO Apply ignorecase
 # TODO Ignore special characters at the end of word
 # TODO Check to replace only whole words, instead of parts
 # TODO Implement delete functionality
@@ -45,7 +43,7 @@ def count_word_to_replace(word_to_replace):
 def replace_word(word_to_replace):
     with open("text.txt", "r+") as file:
         data = file.read()
-        text = re.compile(word_to_replace, re.IGNORECASE)
+        text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         file_content = text.sub("*" * random.randint(1, 10), data)
         file.seek(0)
         file.truncate()
@@ -57,17 +55,15 @@ def read_file():
     with open("text.txt", "r") as file:
         for line in file:
             for word in line.split():
-                data.append(word)
-    return data
+                data.append(word.lower())
+    res = [''.join(i for i in string if i.isalnum()) for string in data]
+    return res
 
-
-file = read_file()
-print(file)
-
-all_words = count_words()
-print(f"\nTotal number of Words in this file: {all_words}")
 
 def main():
+    total_words = count_words()
+    print(f"\nTotal number of words in this file: {total_words}")
+
     while(True):
         data = read_file()
         user_input = get_input()
