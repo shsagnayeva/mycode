@@ -70,7 +70,7 @@ while True:
     # otherwise input will keep asking
     move = ''
     while move == '':  
-        move = input('>')
+        move = input('> ')
 
     # normalizing input:
     # .lower() makes it lower case, .split() turns it to a list
