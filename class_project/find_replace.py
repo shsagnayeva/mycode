@@ -10,12 +10,14 @@ from time import sleep
 # TODO Add comments
 
 
+# Get user's input
 def get_input():
     word_to_replace = str(input("\nPlease enter word to replace: \n(press 'q' for exit) \n>>> "))
     word_to_replace = word_to_replace.lower()
     return word_to_replace
 
 
+# Count total nummber of words in a file
 def count_words():
     with open("text.txt", "r") as file:
         count = 0
@@ -25,21 +27,24 @@ def count_words():
     return count
 
 
+# Count words that should be replaced
 def count_word_to_replace(word_to_replace):
     with open("text.txt", "r") as file:
         count = 0
         for line in file:
             for word in line.split():
-                word = word.lower()
-                if word == word_to_replace.lower():
+                word_lowercase = word.lower()
+                word_only = re.sub(r"[^a-zA-Z0-9]", "", word_lowercase)
+                if word_only == word_to_replace.lower():
                     count +=1
         return count
 
 
-# TODO Ignore special characters at the end of word
 # TODO Check to replace only whole words, instead of parts
 # TODO Implement delete functionality
 
+
+# Replace word and update a file with replacement
 def replace_word(word_to_replace):
     with open("text.txt", "r+") as file:
         data = file.read()
@@ -50,6 +55,7 @@ def replace_word(word_to_replace):
         file.write(file_content)
 
 
+# Read a file
 def read_file():
     data = []
     with open("text.txt", "r") as file:
@@ -60,6 +66,7 @@ def read_file():
     return res
 
 
+# Main function: while loop and options
 def main():
     total_words = count_words()
     print(f"\nTotal number of words in this file: {total_words}")
