@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
 
-"""This programs performs count words in a file, count specific word that user inputs, find and replace"""
+"""This programs performs count words in a file, count specific word that user inputs to replace, find and replace"""
 
 
 import re
 import random
 from time import sleep
-# TODO Add comments
 
 
 # Get user's input
@@ -38,10 +37,6 @@ def count_word_to_replace(word_to_replace):
                 if word_only == word_to_replace.lower():
                     count +=1
         return count
-
-
-# TODO Check to replace only whole words, instead of parts
-# TODO Implement delete functionality
 
 
 # Replace word and update a file with replacement
