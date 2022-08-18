@@ -18,8 +18,7 @@ def get_menu_option():
     option2 = "PRESS 2 - Replace word with another word"
     option3 = "PRESS 3 - Delete word"
     option4 = "PRESS q to EXIT"
-    option5 = "5 uppercase"
-    options = [option1, option2, option3, option4, option5]
+    options = [option1, option2, option3, option4]
     return options
 
 
@@ -103,18 +102,6 @@ def delete_word(word_to_delete):
         file.write(updated_file_content)
 
 
-# Uppercase word and update file
-def upper_word(word_to_upper):
-    """update case to uppercase"""
-    with open(FILENAME, "r+", encoding = "utf-8") as file:
-        data = file.read()
-        text = re.compile(re.escape(word_to_upper), re.IGNORECASE)
-        file_content = text.upper()
-        file.seek(0)
-        file.truncate()
-        file.write(file_content)
-
-
 # Main function: while loop and options
 def main():
     """runtime function"""
@@ -130,7 +117,7 @@ def main():
             sleep(1)
             print("Program closed\n")
             break
-        if option in ("1", "2", "3", "5"):
+        if option in ("1", "2", "3"):
             print("\nPlease enter a word: ")
             user_input = get_input()
             word = user_input.lower()
@@ -156,8 +143,6 @@ def main():
                 print(f"{count} '{user_input}' word(s) successfully deleted...")
                 sleep(1)
                 print(f"\nTotal number of word in this file updated: {count_total_words()}")
-            elif word in data and option =="5":
-                upper_word(word)
             else:
                 print(f"No '{user_input}' word in this file")
 
