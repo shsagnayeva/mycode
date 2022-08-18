@@ -9,12 +9,23 @@ import random
 from time import sleep
 
 
+# Get menu option select
+def get_menu_option():
+    """menu option"""
+    option1 = "PRESS 1 - Replace words with random number of asterics"
+    option2 = "PRESS 2 - Replace words with another words"
+    option3 = "PRESS 3 - Delete words"
+    option4 = "PRESS q to EXIT"
+    options = [option1, option2, option3, option4]
+    return options
+
+
 # Get user's input
 def get_input():
-    """get input"""
-    word_to_replace = str(input("\nPlease enter word to replace: \n(press 'q' for exit) \n>>> "))
-    word_to_replace = word_to_replace.lower()
-    return word_to_replace
+    """get input word to replace or delete"""
+    word = str(input("\n>>> "))
+    word = word.lower()
+    return word
 
 
 # Read a file, lowercase and remove special characters
@@ -83,22 +94,31 @@ def main():
     total_words = count_words()
     print(f"\nTotal number of words in this file: {total_words}")
     while True:
-        user_input = get_input()
-        data = read_file()
-        count = count_word_to_replace(user_input)
-        if user_input == "q":
-            print("Close program...")
+        menu = get_menu_option()
+        for i in menu:
+            print("\n", i)
+        option = str(input("\nEnter number to select option >>> "))
+        if option == "q" or option == "Q":
+            print("Close program")
             break
-        if count == 0:
-            print(f"No '{user_input}' word in this file")
-        elif user_input in data:
-            print(f"{count} '{user_input}' word(s) will be replaced...\n...")
-            replace_word(user_input)
-            sleep(2)
-            print(f"{count} '{user_input}' successcully replaced...")
-        else:
-            print(f"No '{user_input}' word in this file")
-
+        if option == "1":
+            print("\nPlease enter word(s) to be replaced. Press 'q' to exit")
+            user_input = get_input()
+            data = read_file()
+            count = count_word_to_replace(user_input)
+            if user_input == "q":
+                print("Close program...")
+                break
+            if count == 0:
+                print(f"No '{user_input}' word in this file")
+            elif user_input in data:
+                print(f"{count} '{user_input}' word(s) will be replaced...\n...")
+                replace_word(user_input)
+                sleep(2)
+                print(f"{count} '{user_input}' successcully replaced...")
+            else:
+                print(f"No '{user_input}' word in this file")
+        
 
 if __name__ == "__main__":
     main()
