@@ -127,7 +127,7 @@ def main():
                 print(f"{count} '{user_input}' word(s) will be replaced with asterics...\n...")
                 replace_word(word_to_replace)
                 sleep(2)
-                print(f"{count} '{user_input}' successcully replaced...")
+                print(f"{count} '{user_input}' successfully replaced...")
             else:
                 print(f"No '{user_input}' word in this file")
         elif option == "2":
@@ -145,6 +145,8 @@ def main():
                 print("\nPlease enter replacement word")
                 replacement = get_input()
                 replace_word_with_word(word_to_replace, replacement)
+                sleep(2)
+                print(f"{count} '{user_input} word successfully relaced with '{replacement}'")
             else:
                 print(f"No '{user_input}' word in this file")
 
