@@ -26,17 +26,22 @@ def get_menu_option():
 
 def get_input():
     """Get input word to count, replace or delete"""
+    # Get input and convert it into string
     word = str(input("\n>>> "))
     return word
 
 
 def read_file():
     """Read a file function"""
+    # Create an empty list to append data
     data = []
     with open(FILENAME, "r", encoding = "utf-8") as file:
         for line in file:
+            # Split string to get separate strings (words)
             for word in line.split():
+                # Append words in list and apply lower() method to get lowercase words
                 data.append(word.lower())
+    # Remove special characters, isalnum() returns True if all characters are letter and numbers
     res = [''.join(i for i in string if i.isalnum()) for string in data]
     return res
 
@@ -45,19 +50,20 @@ def count_total_words():
     """Count total number of words in a file"""
     with open(FILENAME, "r", encoding = "utf-8") as file:
         data = file.read()
+        # Split words and count total number of words in a file
         words = data.split()
         total_words = len(words)
     return total_words
 
 
 def count_word(word_to_count):
-    """Count specific word that user inputs"""
+    """Count word that user inputs"""
     with open(FILENAME, "r", encoding = "utf-8") as file:
         count = 0
         for line in file:
             for word in line.split():
                 word_lowercase = word.lower()
-                # Ignore all special characters
+                # Ignore special characters
                 word_only = re.sub(r"[^a-zA-Z0-9]", "", word_lowercase)
                 if word_only == word_to_count.lower():
                     count += 1
@@ -71,8 +77,11 @@ def replace_word(word_to_replace):
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         # Replace word with random number of integers (1, 10)
         file_content = text.sub("*" * random.randint(1, 10), data)
+        # Set the reference point in the begining of the file
         file.seek(0)
+        # Truncate method resizes the file, if no parameter uses current file size
         file.truncate()
+        # Write new content to the file
         file.write(file_content)
 
 
@@ -82,8 +91,11 @@ def replace_word_with_word(word_to_replace, replacement):
         data = file.read()
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         file_content = text.sub(replacement, data)
+        # Set the reference point in the begining of the file
         file.seek(0)
+        # Truncate method resizes the file, if no parameter uses current file size
         file.truncate()
+        # Write new content to the file
         file.write(file_content)
 
 
@@ -93,8 +105,11 @@ def delete_word(word_to_delete):
         data = file.read()
         text = re.compile(re.escape(word_to_delete), re.IGNORECASE)
         file_content = text.sub("", data)
+        # Remove multiple spaces between words
         updated_file_content =  re.sub(r' {2,}' , ' ', file_content)
+        # Set the reference point in the begining of the file
         file.seek(0)
+        # Truncate method resized the file, if no parameter uses current file size
         file.truncate()
         file.write(updated_file_content)
 
@@ -105,6 +120,7 @@ def main():
     print(f"\nTotal number of words in this file: {total_words}")
     # Infinite while loop
     while True:
+        # Print menu options
         menu = get_menu_option()
         for i in menu:
             print("\n", i)
