@@ -123,13 +123,13 @@ def delete_word(word_to_delete):
 def main():
     """Runtime function"""
     total_words = count_total_words()
-    print(f"\nTotal number of words in this file: {total_words}")
+    print(f"\nTotal number of words in this file: {total_words}\n")
     # Infinite while loop
     while True:
         # Print menu options
         menu = get_menu_option()
         for i in menu:
-            print("\n", i)
+            print(i)
         option = str(input("\nEnter number to select option >>> "))
         # Exit program option
         if option in ("q", "Q"):
@@ -146,31 +146,32 @@ def main():
             count = count_word(word)
             # If there is no word in a file
             if count == 0:
-                print(f"No '{user_input}' word in this file")
+                print(f"No '{user_input}' word in this file\n")
             # Option0: count word
             elif word in data and option == "0":
-                print(f"Total number of '{user_input}' word(s) in this file: {count}")
+                print(f"Total number of '{user_input}' word in this file: {count}\n")
             # Option1: replace word with asterisks
             elif word in data and option == "1":
-                print(f"{count} '{user_input}' word(s) will be replaced with asterics...\n...")
+                print(f"{count} '{user_input}' word(s) will be replaced with asterics...\n")
                 replace_word(word)
                 sleep(1)
-                print(f"{count} '{user_input}' successfully replaced...")
+                print(f"{count} '{user_input}' successfully replaced")
             # Option2: replace word with another word
             elif word in data and option == "2":
                 print("\nPlease enter replacement word: ")
                 replacement = get_input()
+                print(f"{count} '{user_input}' word(s) will be replaced with {replacement}...\n")
                 replace_word_with_word(word, replacement)
                 sleep(2)
-                print(f"{count} '{user_input} word(s) successfully relaced with '{replacement}'")
+                print(f"{count} '{user_input} successfully relaced with '{replacement}'")
             # Option3: delete word form a file
             elif word in data and option == "3":
-                print(f"{count} '{user_input} will be deleted...\n...")
+                print(f"{count} '{user_input} word(s) will be deleted...\n...")
                 delete_word(word)
                 sleep(2)
-                print(f"{count} '{user_input}' word(s) successfully deleted...")
+                print(f"{count} '{user_input}' successfully deleted")
                 sleep(1)
-                print(f"\nTotal number of word in this file updated: {count_total_words()}")
+                print(f"\nTotal number of words in this file updated: {count_total_words()}")
             else:
                 print(f"No '{user_input}' word in this file")
 
