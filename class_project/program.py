@@ -32,22 +32,22 @@ def get_input():
 
 
 def read_file():
-    """Read a file function"""
+    """Read the file"""
     # Create an empty list to append data
     data = []
     with open(FILENAME, "r", encoding = "utf-8") as file:
         for line in file:
             # Split string to get separate strings (words)
             for word in line.split():
-                # Append words in list and apply lower() method to get lowercase words
+                # Append words in a list and apply lower() method to get lowercase words
                 data.append(word.lower())
-    # Remove special characters, isalnum() returns True if all characters are letter and numbers
-    res = [''.join(i for i in string if i.isalnum()) for string in data]
-    return res
+    # Remove special characters, isalnum() returns True if all characters are letters and numbers
+    file_content = [''.join(i for i in string if i.isalnum()) for string in data]
+    return file_content
 
 
 def count_total_words():
-    """Count total number of words in a file"""
+    """Count total number of words in the file"""
     with open(FILENAME, "r", encoding = "utf-8") as file:
         data = file.read()
         # Split words and count total number of words in a file
@@ -74,6 +74,7 @@ def replace_word(word_to_replace):
     """Replace word that user inputs with random number of asterisks and save updates"""
     with open(FILENAME, "r+", encoding = "utf-8") as file:
         data = file.read()
+        # Compile regex pattern, ignore special characters and ignorecase
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         # Replace word with random number of integers (1, 10)
         file_content = text.sub("*" * random.randint(1, 10), data)
@@ -89,7 +90,9 @@ def replace_word_with_word(word_to_replace, replacement):
     """Replace word with another word that user inputs"""
     with open(FILENAME, "r+", encoding = "utf-8") as file:
         data = file.read()
+        # Compile regex pattern, ignore special characters and ignorecase
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
+        # Replace word with another word
         file_content = text.sub(replacement, data)
         # Set the reference point in the begining of the file
         file.seek(0)
@@ -103,7 +106,9 @@ def delete_word(word_to_delete):
     """Delete word from a file and save updates"""
     with open(FILENAME, "r+", encoding = "utf-8") as file:
         data = file.read()
+        # Compile regex pattern, ignore special characters and ignorecase
         text = re.compile(re.escape(word_to_delete), re.IGNORECASE)
+        # Replace word with an empty string
         file_content = text.sub("", data)
         # Remove multiple spaces between words
         updated_file_content =  re.sub(r' {2,}' , ' ', file_content)
@@ -111,6 +116,7 @@ def delete_word(word_to_delete):
         file.seek(0)
         # Truncate method resized the file, if no parameter uses current file size
         file.truncate()
+        # Write new content to the file
         file.write(updated_file_content)
 
 
