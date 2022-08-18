@@ -94,9 +94,10 @@ def delete_word(word_to_delete):
         data = file.read()
         text = re.compile(re.escape(word_to_delete), re.IGNORECASE)
         file_content = text.sub("", data)
+        updated_file_content =  re.sub(r' {2,}' , ' ', file_content)
         file.seek(0)
         file.truncate()
-        file.write(file_content)
+        file.write(updated_file_content)
 
 
 # Main function: while loop and options
@@ -110,10 +111,12 @@ def main():
             print("\n", i)
         option = str(input("\nEnter number to select option >>> "))
         if option in ("q", "Q"):
-            print("Close program\n")
+            print("\nClosing program...\n")
+            sleep(2)
+            print("Program closed\n")
             break
         if option in ("1", "2", "3"):
-            print("\nPlease enter a word")
+            print("\nPlease enter a word: ")
             user_input = get_input()
             word = user_input.lower()
             data = read_file()
