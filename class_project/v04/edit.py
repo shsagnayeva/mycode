@@ -40,7 +40,7 @@ def read_file():
 
 
 # Count total number of words in a file
-def count_words():
+def count_total_words():
     """count total words"""
     with open("text.txt", "r", encoding = "utf-8") as file:
         data = file.read()
@@ -49,16 +49,16 @@ def count_words():
     return total_words
 
 
-# Count words that should be replaced
-def count_word_to_replace(word_to_replace):
-    """count word to be replaced"""
+# Count words that should be replaced or deleted
+def count_word(word_to_count):
+    """count word"""
     with open("text.txt", "r", encoding = "utf-8") as file:
         count = 0
         for line in file:
             for word in line.split():
                 word_lowercase = word.lower()
                 word_only = re.sub(r"[^a-zA-Z0-9]", "", word_lowercase)
-                if word_only == word_to_replace.lower():
+                if word_only == word_to_count.lower():
                     count += 1
         return count
 
@@ -102,7 +102,7 @@ def delete_word(word_to_delete):
 # Main function: while loop and options
 def main():
     """runtime function"""
-    total_words = count_words()
+    total_words = count_total_words()
     print(f"\nTotal number of words in this file: {total_words}")
     while True:
         menu = get_menu_option()
@@ -110,37 +110,32 @@ def main():
             print("\n", i)
         option = str(input("\nEnter number to select option >>> "))
         if option in ("q", "Q"):
-            print("Close program")
+            print("Close program\n")
             break
-        if option == "1":
-            print("\nPlease enter word to be replaced")
+        if option in ("1", "2", "3"):
+            print("\nPlease enter a word")
             user_input = get_input()
-            word_to_replace = user_input.lower()
+            word = user_input.lower()
             data = read_file()
-            count = count_word_to_replace(word_to_replace)
+            count = count_word(word)
             if count == 0:
                 print(f"No '{user_input}' word in this file")
-            elif word_to_replace in data:
+            elif word in data and option == "1":
                 print(f"{count} '{user_input}' word(s) will be replaced with asterics...\n...")
-                replace_word(word_to_replace)
+                replace_word(word)
                 sleep(2)
                 print(f"{count} '{user_input}' successfully replaced...")
-            else:
-                print(f"No '{user_input}' word in this file")
-        elif option == "2":
-            print("\nPlease enter word to be replaced")
-            user_input = get_input()
-            word_to_replace = user_input.lower()
-            data = read_file()
-            count = count_word_to_replace(word_to_replace)
-            if count == 0:
-                print(f"No '{user_input}' word in this file")
-            elif word_to_replace in data:
+            elif word in data and option == "2":
                 print("\nPlease enter replacement word")
                 replacement = get_input()
-                replace_word_with_word(word_to_replace, replacement)
+                replace_word_with_word(word, replacement)
                 sleep(2)
-                print(f"{count} '{user_input} word successfully relaced with '{replacement}'")
+                print(f"{count} '{user_input} word(s) successfully relaced with '{replacement}'")
+            elif word in data and option == "3":
+                print(f"{count} '{user_input} will be deleted...\n...")
+                delete_word(word)
+                sleep(2)
+                print(f"{count} '{user_input}' word(s) successfully deleted...")
             else:
                 print(f"No '{user_input}' word in this file")
 
