@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-"""This programs performs count words, count specific word that user inputs, find and replace"""
+"""This program performs: count all  words, count word that user inputs, find, replace and delete"""
 
 
 import re
@@ -11,27 +11,28 @@ from time import sleep
 
 FILENAME = "text.txt"
 
-# Get menu option select
+# Get menu options
 def get_menu_option():
-    """menu option"""
-    option1 = "PRESS 1 - Replace word with random number of asterics"
+    """menu options"""
+    option0 = "PRESS 0 - Count word in a file"
+    option1 = "PRESS 1 - Replace word with random number of asterisks"
     option2 = "PRESS 2 - Replace word with another word"
     option3 = "PRESS 3 - Delete word"
     option4 = "PRESS q to EXIT"
-    options = [option1, option2, option3, option4]
+    options = [option0, option1, option2, option3, option4]
     return options
 
 
 # Get user's input
 def get_input():
-    """get input word to replace or delete"""
+    """get input word to count, replace or delete"""
     word = str(input("\n>>> "))
     return word
 
 
 # Read a file, lowercase and remove special characters
 def read_file():
-    """read a file function, lower*( and remove special characters"""
+    """read a file function"""
     data = []
     with open(FILENAME, "r", encoding = "utf-8") as file:
         for line in file:
@@ -51,7 +52,7 @@ def count_total_words():
     return total_words
 
 
-# Count words that should be replaced or deleted
+# Count word number
 def count_word(word_to_count):
     """count word"""
     with open(FILENAME, "r", encoding = "utf-8") as file:
@@ -67,7 +68,7 @@ def count_word(word_to_count):
 
 # Replace word and update a file with replacement
 def replace_word(word_to_replace):
-    """replace word with random number of asterics and save updates"""
+    """replace word with random number of asterisks and save updates"""
     with open(FILENAME, "r+", encoding = "utf-8") as file:
         data = file.read()
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
@@ -117,7 +118,7 @@ def main():
             sleep(1)
             print("Program closed\n")
             break
-        if option in ("1", "2", "3"):
+        if option in ("0", "1", "2", "3"):
             print("\nPlease enter a word: ")
             user_input = get_input()
             word = user_input.lower()
@@ -125,6 +126,8 @@ def main():
             count = count_word(word)
             if count == 0:
                 print(f"No '{user_input}' word in this file")
+            elif word in data and option == "0":
+                print(f"Total number of '{user_input}' word(s) in this file: {count}")
             elif word in data and option == "1":
                 print(f"{count} '{user_input}' word(s) will be replaced with asterics...\n...")
                 replace_word(word)
