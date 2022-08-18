@@ -8,6 +8,7 @@ import re
 import random
 from time import sleep
 
+FILENAME = "text.txt"
 
 # Get menu option select
 def get_menu_option():
@@ -31,7 +32,7 @@ def get_input():
 def read_file():
     """read a file function, lower*( and remove special characters"""
     data = []
-    with open("text.txt", "r", encoding = "utf-8") as file:
+    with open(FILENAME, "r", encoding = "utf-8") as file:
         for line in file:
             for word in line.split():
                 data.append(word.lower())
@@ -42,7 +43,7 @@ def read_file():
 # Count total number of words in a file
 def count_total_words():
     """count total words"""
-    with open("text.txt", "r", encoding = "utf-8") as file:
+    with open(FILENAME, "r", encoding = "utf-8") as file:
         data = file.read()
         words = data.split()
         total_words = len(words)
@@ -52,7 +53,7 @@ def count_total_words():
 # Count words that should be replaced or deleted
 def count_word(word_to_count):
     """count word"""
-    with open("text.txt", "r", encoding = "utf-8") as file:
+    with open(FILENAME, "r", encoding = "utf-8") as file:
         count = 0
         for line in file:
             for word in line.split():
@@ -66,7 +67,7 @@ def count_word(word_to_count):
 # Replace word and update a file with replacement
 def replace_word(word_to_replace):
     """replace word with random number of asterics and save updates"""
-    with open("text.txt", "r+", encoding = "utf-8") as file:
+    with open(FILENAME, "r+", encoding = "utf-8") as file:
         data = file.read()
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         file_content = text.sub("*" * random.randint(1, 10), data)
@@ -78,7 +79,7 @@ def replace_word(word_to_replace):
 # Replace words with custom replacement
 def replace_word_with_word(word_to_replace, replacement):
     """replace word with another word"""
-    with open("text.txt", "r+", encoding = "utf-8") as file:
+    with open(FILENAME, "r+", encoding = "utf-8") as file:
         data = file.read()
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         file_content = text.sub(replacement, data)
@@ -90,7 +91,7 @@ def replace_word_with_word(word_to_replace, replacement):
 # Delete word and update a file
 def delete_word(word_to_delete):
     """delete word from a file and save updates"""
-    with open("text.txt", "r+", encoding = "utf-8") as file:
+    with open(FILENAME, "r+", encoding = "utf-8") as file:
         data = file.read()
         text = re.compile(re.escape(word_to_delete), re.IGNORECASE)
         file_content = text.sub("", data)
@@ -112,7 +113,7 @@ def main():
         option = str(input("\nEnter number to select option >>> "))
         if option in ("q", "Q"):
             print("\nClosing program...\n")
-            sleep(2)
+            sleep(1)
             print("Program closed\n")
             break
         if option in ("1", "2", "3"):
@@ -126,10 +127,10 @@ def main():
             elif word in data and option == "1":
                 print(f"{count} '{user_input}' word(s) will be replaced with asterics...\n...")
                 replace_word(word)
-                sleep(2)
+                sleep(1)
                 print(f"{count} '{user_input}' successfully replaced...")
             elif word in data and option == "2":
-                print("\nPlease enter replacement word")
+                print("\nPlease enter replacement word: ")
                 replacement = get_input()
                 replace_word_with_word(word, replacement)
                 sleep(2)
@@ -139,6 +140,8 @@ def main():
                 delete_word(word)
                 sleep(2)
                 print(f"{count} '{user_input}' word(s) successfully deleted...")
+                sleep(1)
+                print(f"\nTotal number of word in this file updated: {count_total_words()}")
             else:
                 print(f"No '{user_input}' word in this file")
 
