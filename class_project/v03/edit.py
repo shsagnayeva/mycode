@@ -14,9 +14,8 @@ def get_menu_option():
     """menu option"""
     option1 = "PRESS 1 - Replace words with random number of asterics"
     option2 = "PRESS 2 - Replace words with another words"
-    option3 = "PRESS 3 - Delete words"
-    option4 = "PRESS q to EXIT"
-    options = [option1, option2, option3, option4]
+    option3 = "PRESS q to EXIT"
+    options = [option1, option2, option3]
     return options
 
 
@@ -82,18 +81,6 @@ def replace_word_with_word(word_to_replace, replacement):
         data = file.read()
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         file_content = text.sub(replacement, data)
-        file.seek(0)
-        file.truncate()
-        file.write(file_content)
-
-
-# Delete word and update a file
-def delete_word(word_to_delete):
-    """delete word from a file and save updates"""
-    with open("text.txt", "r+", encoding = "utf-8") as file:
-        data = file.read()
-        text = re.compile(re.escape(word_to_delete), re.IGNORECASE)
-        file_content = text.sub("", data)
         file.seek(0)
         file.truncate()
         file.write(file_content)
