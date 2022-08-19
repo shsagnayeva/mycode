@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 
 
-"""
-SSagnayeva | Python Class Project
-This program performs count all words, count input word, replace and delete input word
-"""
+""" SSagnayeva | Python Class Project
+This program performs count all words, count input word, replace and delete input word """
 
 
 import re
