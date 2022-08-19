@@ -3,7 +3,7 @@
 
 """
 SSagnayeva | Python Class Project
-This program performs: count all  words, count input word, find, replace and delete
+This program performs count all words, count input word, replace and delete input word
 """
 
 
