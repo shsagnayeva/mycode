@@ -94,8 +94,6 @@ def replace_word_with_word(word_to_replace, replacement):
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         # Replace word with another word
         updated_file_content = text.sub(replacement, data)
-        # If first word of the sentence was updated, uppercase replacement
-        # re.sub(r"([.][ ][a-z0-9])", lambda i: i.groups()[0].upper(), file_content)
         # Set the reference point in the begining of the file
         file.seek(0)
         # Truncate method resizes the file, if no parameter uses current file size
