@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 
 
-"""This program performs: count all  words, count word that user inputs, find, replace and delete"""
+"""
+SSagnayeva | Python Class Project
+This program performs: count all  words, count word that user inputs, find, replace and delete
+"""
 
 
 import re
