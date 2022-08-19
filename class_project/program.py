@@ -28,6 +28,9 @@ def get_input():
     """Get input word to count, replace or delete"""
     # Get input and convert it into string
     word = str(input("\n>>> "))
+    # Remove spaces from input string
+    pattern = re.compile(r'\s+')
+    word = re.sub(pattern, '', word)
     return word
 
 
