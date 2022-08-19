@@ -15,11 +15,11 @@ FILENAME = "text.txt"
 
 def get_menu_option():
     """Function defines and returns menu options"""
-    option0 = "PRESS 0 - Count word in a file"
-    option1 = "PRESS 1 - Replace word with random number of asterisks"
-    option2 = "PRESS 2 - Replace word with another word"
-    option3 = "PRESS 3 - Delete word"
-    option4 = "PRESS q to EXIT"
+    option0 = "ENTER 0 - Count a word in a file"
+    option1 = "ENTER 1 - Replace a word with random number of asterisks"
+    option2 = "ENTER 2 - Replace a word with another word"
+    option3 = "ENTER 3 - Delete a word"
+    option4 = "ENTER q to EXIT"
     # Create list of menu options
     options = [option0, option1, option2, option3, option4]
     return options
