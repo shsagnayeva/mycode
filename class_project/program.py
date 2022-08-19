@@ -3,7 +3,7 @@
 
 """
 SSagnayeva | Python Class Project
-This program performs: count all  words, count word that user inputs, find, replace and delete
+This program performs: count all  words, count input word, find, replace and delete
 """
 
 
@@ -132,7 +132,7 @@ def delete_word(word_to_delete):
 
 
 def main():
-    """Runtime function"""
+    """Main function"""
     total_words = count_total_words()
     print(f"\nTotal number of words in this file: {total_words}\n")
     # Infinite while loop
