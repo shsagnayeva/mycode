@@ -93,13 +93,15 @@ def replace_word_with_word(word_to_replace, replacement):
         # Compile regex pattern, ignore special characters and ignorecase
         text = re.compile(re.escape(word_to_replace), re.IGNORECASE)
         # Replace word with another word
-        file_content = text.sub(replacement, data)
+        updated_file_content = text.sub(replacement, data)
+        # If first word of the sentence was updated, uppercase replacement
+        # re.sub(r"([.][ ][a-z0-9])", lambda i: i.groups()[0].upper(), file_content)
         # Set the reference point in the begining of the file
         file.seek(0)
         # Truncate method resizes the file, if no parameter uses current file size
         file.truncate()
         # Write new content to the file
-        file.write(file_content)
+        file.write(updated_file_content)
 
 
 def delete_word(word_to_delete):
@@ -111,7 +113,12 @@ def delete_word(word_to_delete):
         # Replace word with an empty string
         file_content = text.sub("", data)
         # Remove multiple spaces between words
-        updated_file_content =  re.sub(r' {2,}' , ' ', file_content)
+        file_content_spaces =  re.sub(r" {2,}" , " ", file_content)
+        # Remove spaces before special characters
+        updated_file_content = file_content_spaces.replace(" .",  ".")
+        updated_file_content = updated_file_content.replace(" ,", ",")
+        # If first word of the sentence was removed and there was comma after this word
+        updated_file_content = updated_file_content.replace(".,", ".")
         # Set the reference point in the begining of the file
         file.seek(0)
         # Truncate method resized the file, if no parameter uses current file size
