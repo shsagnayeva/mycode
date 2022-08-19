@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 
-""" SSagnayeva | Python Class Project
-This program performs count all words, count input word, replace and delete input word """
+"""This program performs count all words, count input word, replace and delete input word"""
 
 
 import re
@@ -161,7 +160,7 @@ def main():
                 print(f"Total number of '{user_input}' word in this file: {count}\n")
             # Option1: replace word with asterisks
             elif word in data and option == "1":
-                print(f"{count} '{user_input}' word(s) will be replaced with asterics...\n")
+                print(f"{count} '{user_input}' word(s) will be replaced with asterisks...\n")
                 replace_word(word)
                 sleep(1)
                 print(f"{count} '{user_input}' successfully replaced")
